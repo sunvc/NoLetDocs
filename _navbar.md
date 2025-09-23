@@ -1,4 +1,4 @@
-* Translations
+* 选择语言
   - [:cn: 简体中文](/)
   - [:uk: English](/en-us/)
   - [:kr: 한국어](/ko/)
