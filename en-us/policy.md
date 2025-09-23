@@ -8,51 +8,51 @@ Thank you for using our application (hereinafter referred to as "the App"). We h
 
 When using this App, we do not actively collect your personal information or device data. We only collect and use information in the following circumstances:
 
-### 1.1 推送通知
-如果您启用了推送通知功能，本应用将通过推送通知向您的设备发送文字、图片或视频。推送通知内容由我们提供，用于向您发送与应用相关的信息，如新闻更新、活动通知或重要提醒。
+### 1.1 Push Notifications
+If you enable the push notification feature, the App will send text, images, or videos to your device through push notifications. The content of push notifications is provided by us to send you application-related information, such as news updates, event notifications, or important reminders.
 
-### 1.2 使用数据
-为了改进我们的服务，我们可能会收集您使用应用的某些非个人信息，如使用频率、功能使用情况等。这些数据通常为匿名统计信息。
+### 1.2 Usage Data
+To improve our services, we may collect certain non-personal information about your use of the App, such as frequency of use, feature usage, etc. This data is typically anonymous statistical information.
 
-## 2. 数据的使用
+## 2. Use of Data
 
-我们收集的任何信息都仅用于以下目的：
+Any information we collect is used only for the following purposes:
 
-- 向您发送推送通知，提供与应用相关的更新和信息。
-- 改进本应用的性能和用户体验。
-- 分析应用使用情况，以优化和调整应用功能。
+- To send you push notifications providing updates and information related to the App.
+- To improve the performance and user experience of the App.
+- To analyze App usage for optimizing and adjusting App features.
 
-我们不会将您的个人信息出售、交易或以其他方式与第三方共享，除非根据法律要求或在法律程序中必须披露。
+We will not sell, trade, or otherwise share your personal information with third parties, except when required by law or in legal proceedings where disclosure is necessary.
 
-## 3. 数据存储和安全
+## 3. Data Storage and Security
 
-我们承诺采取合理的技术和组织措施来保护您的数据安全。所有通过推送通知发送的消息和相关数据都会安全传输和存储。
+We are committed to implementing reasonable technical and organizational measures to protect your data security. All messages and related data sent through push notifications are securely transmitted and stored.
 
-## 4. 用户选择
+## 4. User Choices
 
-### 4.1 推送通知
-您可以随时在设备的设置中选择关闭推送通知。如果您禁用推送通知，您将不会再接收到来自本应用的任何推送通知，但这不会影响您使用应用的其他功能。
+### 4.1 Push Notifications
+You can choose to turn off push notifications at any time in your device settings. If you disable push notifications, you will no longer receive any push notifications from this App, but this will not affect your use of other features of the App.
 
-### 4.2 数据访问与删除
-您可以随时联系我们以请求查看、更新或删除我们存储的与您相关的个人信息。请通过以下方式联系我们：[联系信息]
+### 4.2 Data Access and Deletion
+You can contact us at any time to request to view, update, or delete personal information related to you that we store. Please contact us through the following means: [Contact Information]
 
-## 5. 第三方服务
+## 5. Third-Party Services
 
-本应用可能会使用一些第三方服务（如推送通知服务商）来向您发送推送通知。这些服务提供商可能会收集或处理您的数据，我们建议您查阅他们的隐私政策以了解更多信息。
+This App may use some third-party services (such as push notification service providers) to send you push notifications. These service providers may collect or process your data, and we recommend that you review their privacy policies for more information.
 
-## 6. 儿童隐私
+## 6. Children's Privacy
 
-本应用不针对未满13岁的儿童。我们不会故意收集13岁以下儿童的个人信息。如果您是家长或监护人并发现我们不小心收集了儿童的个人信息，请联系我们，我们将尽快删除这些信息。
+This App is not targeted at children under the age of 13. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and discover that we have accidentally collected personal information from a child, please contact us, and we will promptly delete this information.
 
-## 7. 隐私政策的更新
+## 7. Updates to Privacy Policy
 
-我们可能会不时更新本隐私政策。我们会在本页面发布任何修改，并且在修改生效前提供通知。如果您继续使用本应用，则表示您同意修改后的隐私政策。
+We may update this privacy policy from time to time. We will post any modifications on this page and provide notice before the modifications take effect. If you continue to use this App, it indicates that you agree to the modified privacy policy.
 
-## 8. 联系我们
+## 8. Contact Us
 
-如果您对本隐私政策有任何疑问或需要进一步的信息，请通过以下方式联系我们：
+If you have any questions about this privacy policy or need further information, please contact us through the following means:
 
 [Xiwan (Shanghai) Trading Co Ltd]()<br/>
-[电子邮件地址](mailto:to@wzs.app) <br/>
+[Email Address](mailto:to@wzs.app) <br/>
 
-感谢您阅读我们的隐私政策。
+Thank you for reading our privacy policy.
