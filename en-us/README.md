@@ -28,12 +28,12 @@ During the maintenance period, there will be no charges or advertisements of any
 
 ### Documentation
 - **App**
-  - [Usage Tutorial](/tutorial)
-  - [Push Encryption](/encryption)
-  - [FAQ](/faq)
+  - [Usage Tutorial](/en-us/tutorial)
+  - [Push Encryption](/en-us/encryption)
+  - [FAQ](/en-us/faq)
 - **Server**
-  - [Deploy Service](/deploy)
-  - [Direct Push](/apns)
-  - [Compile Code](/build)
-  - [Push Certificate](/cert)
-- [Privacy Security](/privacy)
+  - [Deploy Service](/en-us/deploy)
+  - [Direct Push](/en-us/apns)
+  - [Compile Code](/en-us/build)
+  - [Push Certificate](/en-us/cert)
+- [Privacy Security](/en-us/privacy)

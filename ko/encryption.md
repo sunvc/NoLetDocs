@@ -15,9 +15,9 @@
 **예시:**
 ```python
 # Documentation: "https://wiki.wzs.app"
-# python demo: 使用AES加密数据，并发送到服务器
+# python 데모: AES를 사용하여 데이터를 암호화하고 서버로 전송
 # pip3 install pycryptodome
-# 下面只是一种加密的示例，使用时请在app内直接复制
+# 아래는 암호화의 한 예시일 뿐이며, 사용 시 앱 내에서 직접 복사하세요
 
 import json
 import base64
@@ -33,27 +33,26 @@ def encrypt_aes_mode(data, key, iv):
 	return iv + encrypted_data + tag
 
 
-# JSON数据
+# JSON 데이터
 json_string = json.dumps({"body": "test", "sound": "birdsong"})
 
-# 必须32位 这是一个示例
+# 반드시 32비트여야 합니다. 이것은 예시입니다
 key = b"BxXqdEFEuALb4SGJMQ5zm2fJLrRIz83R"
-# IV可以是随机生成的，但如果是随机的就需要放在 iv 参数里传递。
+# IV는 무작위로 생성될 수 있지만, 무작위인 경우 iv 매개변수에 전달해야 합니다.
 iv= b"BipwZliixOcJDOz8"
 
-# 加密
-# 控制台将打印 "Qmlwd1psaWl4T2NKE2CTw4aoH2dGiJ2G0G39EbOK3IiKhxm6URNmqRBDlTh1U1CEoAaeX/zD+vygVi68wnKh3iI="
+# 암호화
+# 콘솔에 "Qmlwd1psaWl4T2NKE2CTw4aoH2dGiJ2G0G39EbOK3IiKhxm6URNmqRBDlTh1U1CEoAaeX/zD+vygVi68wnKh3iI="가 출력됩니다
 encrypted_data = encrypt_aes_mode(json_string, key, iv[:12])
 
-# 将加密后的数据转换为Base64编码
+# 암호화된 데이터를 Base64로 인코딩
 encrypted_base64 = base64.b64encode(encrypted_data).decode()
 
-print("加密后的数据（Base64编码", encrypted_base64)
+print("암호화된 데이터(Base64 인코딩)", encrypted_base64)
 
 deviceKey = '2uvg28SiADdcrXH46f4xmP'
 
 res = requests.get(f"https://wzs.app/{deviceKey}/test", params = {"ciphertext": encrypted_base64})
 
 print(res.text)
-
 ```

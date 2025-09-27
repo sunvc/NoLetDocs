@@ -73,46 +73,46 @@ apple:
 | `--topic` | `NoLet_APPLE_TOPIC` | APNs Topic | 空 |
 | `--key-id` | `NoLet_APPLE_KEY_ID` | APNs Key ID | 空 |
 | `--team-id` | `NoLet_APPLE_TEAM_ID` | APNs Team ID | 空 |
-| `--develop, --dev` | `NoLet_APPLE_DEVELOP` | 启用 APNs 开发环境 | `false` |
-| `--Expired, --ex` | `NoLet_EXPIRED_TIME` | 语音过期时间（秒） | `120` |
-| `--help, -h` | - | 显示帮助信息 | - |
-| `--config, -c` | - | 指定配置文件路径 | - |
+| `--develop, --dev` | `NoLet_APPLE_DEVELOP` | APNs開発環境を有効にする | `false` |
+| `--Expired, --ex` | `NoLet_EXPIRED_TIME` | 音声の有効期限（秒） | `120` |
+| `--help, -h` | - | ヘルプ情報を表示 | - |
+| `--config, -c` | - | 設定ファイルのパスを指定 | - |
 
-命令行参数优先级高于配置文件，环境变量优先级高于命令行参数。
+コマンドラインパラメータは設定ファイルより優先され、環境変数はコマンドラインパラメータより優先されます。
 
-## Docker部署
+## Dockerデプロイ
 
 ```shell
 
 docker run -d --name NoLets -p 8080:8080 -v ./data:/data  --restart=always  sanvc/NoLet:latest
 ```
 
-## Docker-compose部署
-* 复制项目中的/deploy文件夹到服务器上，然后执行以下命令即可。
-* 可选 `config.yaml` 配置文件，文件中的配置项，可以根据自己的需求进行修改。
+## Docker-composeデプロイ
+* プロジェクト内の/deployフォルダをサーバーにコピーし、以下のコマンドを実行するだけです。
+* オプションで `config.yaml` 設定ファイルを使用できます。ファイル内の設定項目は、必要に応じて変更できます。
 
-* 启动
+* 起動
 ```shell
 docker-compose up -d
 ```
 
-## 手动部署
+## 手動デプロイ
 
-1. 根据平台下载可执行文件:<br> <a href='https://github.com/sunvc/NoLets/releases'>https://github.com/sunvc/NoLets/releases</a><br>
-或自己编译<br>
+1. プラットフォームに応じて実行ファイルをダウンロード:<br> <a href='https://github.com/sunvc/NoLets/releases'>https://github.com/sunvc/NoLets/releases</a><br>
+または自分でコンパイル<br>
 <a href="https://github.com/sunvc/NoLets">https://github.com/sunvc/NoLets</a>
 
-2. 运行
+2. 実行
 ---
 ```
 ./main
 ```
 
-## 其他
+## その他
 
-1. APP端负责将<a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622958-application">DeviceToken</a>发送到服务端。 <br>服务端收到一个推送请求后，将发送推送给Apple服务器。然后手机收到推送
+1. APPは<a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622958-application">DeviceToken</a>をサーバーに送信する役割を担います。<br>サーバーはプッシュリクエストを受信すると、Appleサーバーにプッシュを送信します。その後、スマートフォンがプッシュを受信します。
 
-2. 服务端代码: <a href='https://github.com/sunvc/NoLets'>https://github.com/sunvc/NoLets</a><br>
+2. サーバーコード: <a href='https://github.com/sunvc/NoLets'>https://github.com/sunvc/NoLets</a><br>
 
-3. App代码: <a href="https://github.com/sunvc/NoLet">https://github.com/sunvc/NoLet</a>
+3. Appコード: <a href="https://github.com/sunvc/NoLet">https://github.com/sunvc/NoLet</a>
 

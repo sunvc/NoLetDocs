@@ -8,58 +8,58 @@ If all checks are normal but you still have issues, you can provide feedback in 
 
 #### Device Token Shows Unknown
 This is likely because your device is not properly connected to Apple servers, accompanied by issues such as iMessage unavailability and inability to receive push notifications from other apps.<br/>
-可以尝试切换网络、重启手机、如果翻墙代理了 Apple 服务可以关闭翻墙工具。<br/>
-此问题是用户设备与苹果服务器的连接问题，作者并不能提供任何帮助，需自己尝试解决。
+You can try switching networks, restarting your phone, or disabling VPN tools if you're using them to access Apple services.<br/>
+This issue is related to the connection between your device and Apple servers. The developer cannot provide any assistance, and you need to try resolving it yourself.
 
-#### 推送使用次数限制
-正常请求（HTTP状态码为200）无任何限制。<br>
-但如果在5分钟内超过1000次错误请求（HTTP状态码为400 404 500）<b>IP会被 BAN 24小时</b> 
+#### Push Usage Limits
+Normal requests (HTTP status code 200) have no limitations.<br>
+However, if you exceed 1000 error requests (HTTP status codes 400, 404, 500) within 5 minutes, <b>your IP will be banned for 24 hours</b>.
 
-#### 莫名收到未知推送，比如 NoContent
-可能的原因：<br>
-1. 如果用 Safari 发送过推送，在Safari输入任意网址时，可能 Safari 对历史记录搜索进行自动补全时，正好补全成 Bark API 的 URL，然后预加载触发推送。
-2. 如果将 Bark API URL 发送到聊天软件如微信文件传输助手，微信会不定时的请求 URL 触发推送。
-3. 推送 Key 泄露，推荐在服务器列表页面重置 Key。
+#### Receiving Unknown Push Notifications, such as NoContent
+Possible reasons:<br>
+1. If you've sent push notifications using Safari, when typing any URL in Safari, the browser might autocomplete to a Bark API URL from your history, triggering a push notification through preloading.
+2. If you've sent a Bark API URL to chat applications like WeChat File Assistant, WeChat may periodically request the URL, triggering push notifications.
+3. Your push key may have been leaked. It's recommended to reset your key on the server list page.
 
-#### 时效性通知无效 
-可以尝试<b>重启设备</b>来解决。
+#### Time-sensitive Notifications Not Working
+Try <b>restarting your device</b> to resolve this issue.
 
-#### 无法保存通知历史，或下拉推送没有点击复制按钮无法复制
-可以尝试<b>重启设备</b>来解决。<br />
-因某些原因导致推送服务扩展（[UNNotificationServiceExtension](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension)）未能正常运行，执行通知保存的代码未能正常执行。
+#### Unable to Save Notification History, or Cannot Copy by Pulling Down Notifications Without Clicking the Copy Button
+Try <b>restarting your device</b> to resolve this issue.<br />
+This occurs when the push service extension ([UNNotificationServiceExtension](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension)) isn't running properly, preventing the notification saving code from executing correctly.
 
-#### 自动复制推送失效
-iOS 14.5 之后的版本因权限收紧，不能在收到推送时自动复制推送内容到剪切板。<br/>
-可暂时先下拉推送或在锁屏界面左滑推送点查看即可自动复制，或点击弹出的推送复制按钮。
+#### Automatic Push Content Copying Not Working
+In iOS 14.5 and later versions, due to stricter permissions, the app cannot automatically copy push content to the clipboard when receiving notifications.<br/>
+As a workaround, you can pull down the notification or swipe left on the lock screen notification and tap to view, which will automatically copy the content, or click the copy button on the push notification.
 
-#### 默认打开通知历史列表
-再次开启APP时，会跳转到上次打开的页面。<br />
-只需退出APP时，停留在历史消息页面，再次打开APP时就是历史消息页面。
+#### Default Opening to Notification History List
+When reopening the APP, it will navigate to the last opened page.<br />
+Simply stay on the message history page when exiting the APP, and the next time you open the APP, it will open to the message history page.
 
-#### 推送 API 是否支持 POST 请求？
-NoLet支持 GET POST ,支持使用Json<br>
-无论哪种请求方式，参数名都一样, 参考[使用教程](/tutorial#请求方式)
+#### Does the Push API Support POST Requests?
+NoLet supports both GET and POST requests, and supports using JSON.<br>
+Regardless of the request method, the parameter names remain the same. Refer to the [Tutorial](/tutorial#request-methods) for more information.
 
-#### 推送特殊字符导致推送失败，比如 推送内容包含链接，或推送异常 比如 + 变成空格
-这是因为整个链接不规范导致的问题，常发生在自己手动拼接URL时。<br>
-拼接URL时，注意将参数进行URL编码 
+#### Push Failure Due to Special Characters, Such as Links in Push Content, or Abnormal Pushing (e.g., + Becoming a Space)
+This issue occurs due to improper URL formatting, commonly when manually concatenating URLs.<br>
+When concatenating URLs, make sure to URL-encode the parameters.
 
 ```sh
-# 例如
-https://wzs.app/key/{推送内容}
+# For example
+https://wzs.app/key/{push_content}
 
-# 如果{推送内容}是
+# If {push_content} is
 "a/b/c/"
 
-# 则最后拼接的URL是
+# The final concatenated URL would be
 https://wzs.app/key/a/b/c/
-# 将找不到对应的路由，后端程序将返回404
+# This would not find the corresponding route, and the backend will return 404
 
-# 应该将 {推送内容} url编码后再进行拼接
+# You should URL-encode {push_content} before concatenation
 https://wzs.app/key/a%2Fb%2Fc%2F
 ```
-如果是使用成熟的HTTP库时，参数都会被自动处理，无需自己手动编码。<br>
-但如果是自己去拼接URL时，则需要特别注意参数中的特殊字符，**最好不管有没有特殊字符，无脑套一层URL编码**。
+When using mature HTTP libraries, parameters are automatically processed, and you don't need to manually encode them.<br>
+However, if you're manually concatenating URLs, pay special attention to special characters in the parameters. **It's best to always apply URL encoding regardless of whether there are special characters or not**.
 
-#### 如何保障隐私安全
-参考[隐私安全](/privacy)
+#### How to Ensure Privacy and Security
+Refer to [Privacy and Security](/privacy)

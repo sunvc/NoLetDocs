@@ -2,27 +2,27 @@
 ## Set the update address in the widget, request method GET needs to return content in the following format
 ```Json
 {
-  "large" : { // 大号组件
+  "large" : { // Large widget
     "result" : [ 
       {
-        "group" : "总计",
+        "group" : "Total",
         "lines" : [
           13495
         ],
-        "result" : [ // 不固定数据长度
+        "result" : [ // Variable data length
           {
-            "name" : "示例1",
+            "name" : "Example1",
             "sort" : 0,
             "unity" : 1000,
             "value" : 10999
           },
-          // ...  剩下若干同上
+          // ... More items with the same structure
         ],
         "sort" : 0,
         "type" : "pie"
       },
       {
-        "group" : "示例1",
+        "group" : "Example1",
         "lines" : [
           1834
         ],
@@ -33,39 +33,39 @@
             "unity" : 1000,
             "value" : 565
           },
-           // ...  剩下若干同上
+           // ... More items with the same structure
         ],
         "sort" : 1
       },
-       // ...  剩下若干同上
+       // ... More items with the same structure
     ],
-    "subTitle" : "总计收到64条",
+    "subTitle" : "Total received 64 items",
     "title" : "NoLet"
   },
-  "lock" : { // 锁屏组件
-    "subTitle" : "总计收到64条",
+  "lock" : { // Lock screen widget
+    "subTitle" : "Total received 64 items",
     "title" : "NoLet"
   },
-  "medium" : { // 中号组件
-    "result" : [ // 数组长度6
+  "medium" : { // Medium widget
+    "result" : [ // Array length 6
       {
-        "name" : "总计",
+        "name" : "Total",
         "value" : 18
       },
-     // 数组长度6，剩下2个数据同上
+     // Array length 6, remaining 2 items with the same structure
     ],
-    "subTitle" : "总计收到64条",
+    "subTitle" : "Total received 64 items",
     "title" : "NoLet"
   },
-  "small" : {// 小号组件
-    "result" : [  // 数组长度3
+  "small" : {// Small widget
+    "result" : [  // Array length 3
       {
-        "name" : "总计",
+        "name" : "Total",
         "value" : 18
       },
-     // 数组长度3，剩下2个数据同上
+     // Array length 3, remaining 2 items with the same structure
     ],
-    "subTitle" : "总计收到64条",
+    "subTitle" : "Total received 64 items",
     "title" : "NoLet"
   }
 }

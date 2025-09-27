@@ -31,7 +31,7 @@ curl https://wzs.app/your_key/プッシュ内容?group=グループ&copy=コピ�
 curl -X POST https://wzs.app/your_key \
      -d'body=推送内容&group=分组&copy=复制'
 ```
-##### POST 请求支持JSON，例如：
+##### POSTリクエストはJSONをサポートしています、例：
 ```sh
 curl -X "POST" "//https://wzs.app/your_key" \
      -H 'Content-Type: application/json; charset=utf-8' \
@@ -47,7 +47,7 @@ curl -X "POST" "//https://wzs.app/your_key" \
 }'
 ```
 
-##### JSON 请求 key 可以放进请求体中,URL 路径须为 /push，例如
+##### JSONリクエストではkeyをリクエストボディに入れることができます、URLパスは/pushである必要があります、例：
 ```sh
 curl -X "POST" "https://wzs.app/push" \
      -H 'Content-Type: application/json; charset=utf-8' \
@@ -58,27 +58,27 @@ curl -X "POST" "https://wzs.app/push" \
 }'
 ```
 
-## 请求参数
-支持的参数列表，具体效果可在APP内预览。
-所有参数兼容各种写法：SubTitle / subTitle / subtitle / sub_title / sub-title /
+## リクエストパラメータ
+サポートされているパラメータのリスト、具体的な効果はAPP内でプレビューできます。
+すべてのパラメータは様々な書き方に対応しています：SubTitle / subTitle / subtitle / sub_title / sub-title /
 
-| 参数 | Bark | NoLet 使用差异 |
+| パラメータ | Bark | NoLetでの使用の違い |
 | ----- | ----------- | ----------- |
-| id | 无 | UUID 传入相同id覆盖原有消息 |
-| title | 推送标题 | 一致 |
-| subtitle | 推送副标题 | 一致 |
-| body | 推送内容 | 一致( 支持 content/message/data/text 等同body) |
-| markdown | 不支持 | 渲染Markdown(支持简写 md) |
-| level | 推送中断级别。<br>**active**：默认值，系统会立即亮屏显示通知<br>**timeSensitive**：时效性通知，可在专注状态下显示通知。<br>**passive**：仅将通知添加到通知列表，不会亮屏提醒。<br>**critical**：重要提醒，可在专注模式或者静音模式下提醒 | 兼容。参数可以使用数字替代：`level=1`<br>0：passive<br>1：active<br>2：timeSensitive<br>3...10：critical，此模式数字将用于音量（`level=3...10`） |
-| volume | `level=critical` 模式下音量，取值范围 0...10 | 一致 |
-| call | 长提醒，类似微信电话通知 | 一致 |
-| badge | 推送角标，可以是任意数字 | 按照未读数计算 |
-| autoCopy | iOS 14.5 以下自动复制推送内容，iOS 14.5 以上需手动长按推送或下拉推送 | 本应用 iOS 16+ |
-| copy | 复制推送时，指定复制的内容，不传此参数将复制整个推送内容。 | 一致 |
-| sound | 可以为推送设置不同的铃声 | 应用内可设置默认铃声 |
-| icon | 为推送设置自定义图标,图标自动缓存 | 一致，额外支持上传云图标 |
-| image | 传入图片地址，手机收到消息后自动下载缓存 | 一致 |
-| savealbum | 不支持 | 传"1"自动保存图片到相册 |
-| group | 对消息进行分组，推送将按 `group` 分组显示在通知中心中。<br>也可在历史消息列表中选择查看不同的群组。 | 兼容 |
-| isArchive | 传 `1` 保存推送，传其他的不保存推送，不传按 App 内设置来决定是否保存。 | 用 `ttl=天数` |
-| url | 点击推送时，跳转的 URL，支持 URL Scheme 和 Universal Link | 一致 |
+| id | なし | 同じidを持つUUIDを送信すると既存のメッセージを上書きします |
+| title | プッシュタイトル | 同じ |
+| subtitle | プッシュサブタイトル | 同じ |
+| body | プッシュ内容 | 同じ（content/message/data/textもbodyと同等にサポート） |
+| markdown | サポートなし | Markdownをレンダリング（mdという略語もサポート） |
+| level | プッシュ割り込みレベル。<br>**active**：デフォルト値、システムは即座に画面を点灯して通知を表示します<br>**timeSensitive**：時間指定通知、集中モード中でも通知を表示できます。<br>**passive**：通知を通知リストに追加するだけで、画面点灯による通知はしません。<br>**critical**：重要な通知、集中モードやサイレントモードでも通知します | 互換性あり。パラメータは数字で代用可能：`level=1`<br>0：passive<br>1：active<br>2：timeSensitive<br>3...10：critical、このモードでは数字は音量として使用されます（`level=3...10`） |
+| volume | `level=critical`モードでの音量、値の範囲は0...10 | 同じ |
+| call | 長い通知、WeChatの電話通知に似ています | 同じ |
+| badge | プッシュバッジ、任意の数字が可能 | 未読数に基づいて計算 |
+| autoCopy | iOS 14.5以下では自動的にプッシュ内容をコピー、iOS 14.5以上では手動でプッシュを長押しするか下にスワイプする必要があります | このアプリはiOS 16+ |
+| copy | プッシュをコピーする際に、コピーする内容を指定します。このパラメータを渡さない場合、プッシュ内容全体がコピーされます。 | 同じ |
+| sound | プッシュに異なる着信音を設定できます | アプリ内でデフォルトの着信音を設定可能 |
+| icon | プッシュにカスタムアイコンを設定、アイコンは自動的にキャッシュされます | 同じ、さらにクラウドアイコンのアップロードをサポート |
+| image | 画像URLを渡すと、スマートフォンがメッセージを受信した後に自動的にダウンロードしてキャッシュします | 同じ |
+| savealbum | サポートなし | "1"を渡すと画像を自動的にアルバムに保存します |
+| group | メッセージをグループ化し、プッシュは`group`によって通知センターにグループ化して表示されます。<br>また、履歴メッセージリストで異なるグループを選択して表示することもできます。 | 互換性あり |
+| isArchive | `1`を渡すとプッシュを保存し、他の値を渡すと保存せず、渡さない場合はアプリ内の設定に従って保存するかどうかを決定します。 | `ttl=日数`を使用 |
+| url | プッシュをタップした時にジャンプするURL、URL SchemeとUniversal Linkをサポートしています | 同じ |

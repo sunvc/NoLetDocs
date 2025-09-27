@@ -5,42 +5,42 @@ If you have the device's DeviceToken (viewable in the APP), you can call Apple's
 Here is a command line example for sending push notifications:
 
 ```shell
-# 设置环境变量
-# 下载 key https://github.com/sunvc/NoLetServer/tree/main/deploy/NoLet.p8
-# 将 key 文件路径填到下面
+# Set environment variables
+# Download key from https://github.com/sunvc/NoLetServer/tree/main/deploy/NoLet.p8
+# Fill in the key file path below
 TOKEN_KEY_FILE_NAME= 
-# 从 app 设置中复制 DeviceToken 到这
+# Copy DeviceToken from app settings here
 DEVICE_TOKEN=
 
-#下面的不要修改
+# Do not modify the following
 TEAM_ID=FUWV6U942Q
 AUTH_KEY_ID=BNY5GUGV38
 TOPIC=me.sunvc.Meoworld
 APNS_HOST_NAME=api.push.apple.com
 
-# 生成TOKEN
+# Generate TOKEN
 JWT_ISSUE_TIME=$(date +%s)
 JWT_HEADER=$(printf '{ "alg": "ES256", "kid": "%s" }' "${AUTH_KEY_ID}" | openssl base64 -e -A | tr -- '+/' '-_' | tr -d =)
 JWT_CLAIMS=$(printf '{ "iss": "%s", "iat": %d }' "${TEAM_ID}" "${JWT_ISSUE_TIME}" | openssl base64 -e -A | tr -- '+/' '-_' | tr -d =)
 JWT_HEADER_CLAIMS="${JWT_HEADER}.${JWT_CLAIMS}"
 JWT_SIGNED_HEADER_CLAIMS=$(printf "${JWT_HEADER_CLAIMS}" | openssl dgst -binary -sha256 -sign "${TOKEN_KEY_FILE_NAME}" | openssl base64 -e -A | tr -- '+/' '-_' | tr -d =)
-# 如果有条件，最好改进脚本缓存此 Token。Token 30分钟内复用同一个，每过30分钟重新生成
-# 苹果文档指明 TOKEN 生成间隔最短20分钟，TOKEN 有效期最长60分钟
-# 间隔过短重复生成会生成失败，TOKEN 超过1小时不重新生成就不能推送
-# 但经我不负责任的简单测试可以短时间内正常生成
-# 此处仅提醒，或许可能因频繁生成 TOKEN 导致推送失败
+# If possible, it's best to improve the script to cache this Token. Reuse the same Token within 30 minutes, regenerate every 30 minutes
+# Apple documentation states that TOKEN generation interval should be at least 20 minutes, TOKEN validity is maximum 60 minutes
+# Generating too frequently will fail, and not regenerating after 1 hour will prevent push notifications
+# Based on my simple, non-rigorous testing, it can be generated normally in a short time
+# This is just a reminder that frequent TOKEN generation may cause push notification failures
 AUTHENTICATION_TOKEN="${JWT_HEADER}.${JWT_CLAIMS}.${JWT_SIGNED_HEADER_CLAIMS}"
 
-#发送推送
+# Send push notification
 curl -v --header "apns-topic: $TOPIC" --header "apns-push-type: alert" --header "authorization: bearer $AUTHENTICATION_TOKEN" --data '{"aps":{"alert":"test"}}' --http2 https://${APNS_HOST_NAME}/3/device/${DEVICE_TOKEN}
 
 ```
 
-### 推送参数格式
-参考 https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/generating_a_remote_notification<br>
-一定要带上 "mutable-content" : 1 ，否则推送扩展不执行，不会保存推送。<br>
+### Push Notification Parameter Format
+Reference: https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/generating_a_remote_notification<br>
+You must include "mutable-content": 1, otherwise the push extension will not execute and the push notification will not be saved.<br>
 
-示例：
+Example:
 ```js
 {
     "aps": {

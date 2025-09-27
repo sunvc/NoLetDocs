@@ -9,8 +9,8 @@
 You can send GET or POST requests. When the request is successful, you will immediately receive a push notification.<br>
 Difference from Bark: Parameter priority [POST > GET > URL params] - POST parameters will override GET parameters and so on
 
-## URL格式
-URL由推送key、参数 title、参数 body 组成。有下面两种组合方式
+## URL Format
+The URL consists of a push key, title parameter, and body parameter. There are the following combination methods:
 
 ```
 https://wzs.app/:key/:body 
@@ -19,19 +19,19 @@ https://wzs.app/:key/:title/:subtitle/:body
 
 ```
 
-## 请求方式
-##### GET 请求参数拼接在 URL 后面，例如：
+## Request Methods
+##### GET request parameters are appended to the URL, for example:
 ```sh
-curl https://wzs.app/your_key/推送内容?group=分组&copy=复制
+curl https://wzs.app/your_key/push_content?group=group_name&copy=copy_content
 ```
-*手动拼接参数到URL上时，请注意URL编码问题，可以参考阅读[常见问题：URL编码](/faq?id=%e6%8e%a8%e9%80%81%e7%89%b9%e6%ae%8a%e5%ad%97%e7%ac%a6%e5%af%bc%e8%87%b4%e6%8e%a8%e9%80%81%e5%a4%b1%e8%b4%a5%ef%bc%8c%e6%af%94%e5%a6%82-%e6%8e%a8%e9%80%81%e5%86%85%e5%ae%b9%e5%8c%85%e5%90%ab%e9%93%be%e6%8e%a5%ef%bc%8c%e6%88%96%e6%8e%a8%e9%80%81%e5%bc%82%e5%b8%b8-%e6%af%94%e5%a6%82-%e5%8f%98%e6%88%90%e7%a9%ba%e6%a0%bc)*
+*When manually appending parameters to the URL, please be aware of URL encoding issues. You can refer to [FAQ: URL Encoding](/faq?id=%e6%8e%a8%e9%80%81%e7%89%b9%e6%ae%8a%e5%ad%97%e7%ac%a6%e5%af%bc%e8%87%b4%e6%8e%a8%e9%80%81%e5%a4%b1%e8%b4%a5%ef%bc%8c%e6%af%94%e5%a6%82-%e6%8e%a8%e9%80%81%e5%86%85%e5%ae%b9%e5%8c%85%e5%90%ab%e9%93%be%e6%8e%a5%ef%bc%8c%e6%88%96%e6%8e%a8%e9%80%81%e5%bc%82%e5%b8%b8-%e6%af%94%e5%a6%82-%e5%8f%98%e6%88%90%e7%a9%ba%e6%a0%bc)*
 
-##### POST 请求参数放在请求体中，例如：
+##### POST request parameters are placed in the request body, for example:
 ```sh
 curl -X POST https://wzs.app/your_key \
-     -d'body=推送内容&group=分组&copy=复制'
+     -d'body=push_content&group=group_name&copy=copy_content'
 ```
-##### POST 请求支持JSON，例如：
+##### POST requests support JSON, for example:
 ```sh
 curl -X "POST" "//https://wzs.app/your_key" \
      -H 'Content-Type: application/json; charset=utf-8' \
@@ -47,7 +47,7 @@ curl -X "POST" "//https://wzs.app/your_key" \
 }'
 ```
 
-##### JSON 请求 key 可以放进请求体中,URL 路径须为 /push，例如
+##### For JSON requests, the key can be placed in the request body, and the URL path must be /push, for example:
 ```sh
 curl -X "POST" "https://wzs.app/push" \
      -H 'Content-Type: application/json; charset=utf-8' \
@@ -58,27 +58,27 @@ curl -X "POST" "https://wzs.app/push" \
 }'
 ```
 
-## 请求参数
-支持的参数列表，具体效果可在APP内预览。
-所有参数兼容各种写法：SubTitle / subTitle / subtitle / sub_title / sub-title /
+## Request Parameters
+List of supported parameters. You can preview the specific effects in the APP.
+All parameters are compatible with various writing styles: SubTitle / subTitle / subtitle / sub_title / sub-title /
 
-| 参数 | Bark | NoLet 使用差异 |
+| Parameter | Bark | NoLet Usage Difference |
 | ----- | ----------- | ----------- |
-| id | 无 | UUID 传入相同id覆盖原有消息 |
-| title | 推送标题 | 一致 |
-| subtitle | 推送副标题 | 一致 |
-| body | 推送内容 | 一致( 支持 content/message/data/text 等同body) |
-| markdown | 不支持 | 渲染Markdown(支持简写 md) |
-| level | 推送中断级别。<br>**active**：默认值，系统会立即亮屏显示通知<br>**timeSensitive**：时效性通知，可在专注状态下显示通知。<br>**passive**：仅将通知添加到通知列表，不会亮屏提醒。<br>**critical**：重要提醒，可在专注模式或者静音模式下提醒 | 兼容。参数可以使用数字替代：`level=1`<br>0：passive<br>1：active<br>2：timeSensitive<br>3...10：critical，此模式数字将用于音量（`level=3...10`） |
-| volume | `level=critical` 模式下音量，取值范围 0...10 | 一致 |
-| call | 长提醒，类似微信电话通知 | 一致 |
-| badge | 推送角标，可以是任意数字 | 按照未读数计算 |
-| autoCopy | iOS 14.5 以下自动复制推送内容，iOS 14.5 以上需手动长按推送或下拉推送 | 本应用 iOS 16+ |
-| copy | 复制推送时，指定复制的内容，不传此参数将复制整个推送内容。 | 一致 |
-| sound | 可以为推送设置不同的铃声 | 应用内可设置默认铃声 |
-| icon | 为推送设置自定义图标,图标自动缓存 | 一致，额外支持上传云图标 |
-| image | 传入图片地址，手机收到消息后自动下载缓存 | 一致 |
-| savealbum | 不支持 | 传"1"自动保存图片到相册 |
-| group | 对消息进行分组，推送将按 `group` 分组显示在通知中心中。<br>也可在历史消息列表中选择查看不同的群组。 | 兼容 |
-| isArchive | 传 `1` 保存推送，传其他的不保存推送，不传按 App 内设置来决定是否保存。 | 用 `ttl=天数` |
-| url | 点击推送时，跳转的 URL，支持 URL Scheme 和 Universal Link | 一致 |
+| id | None | UUID - passing the same id will override the existing message |
+| title | Push notification title | Same |
+| subtitle | Push notification subtitle | Same |
+| body | Push notification content | Same (also supports content/message/data/text as alternatives to body) |
+| markdown | Not supported | Renders Markdown (supports shorthand 'md') |
+| level | Push interruption level.<br>**active**: Default value, the system will immediately light up the screen to display the notification<br>**timeSensitive**: Time-sensitive notification, can display notifications in Focus mode.<br>**passive**: Only adds the notification to the notification list, will not light up the screen.<br>**critical**: Important reminder, can remind in Focus mode or silent mode | Compatible. Parameters can be replaced with numbers: `level=1`<br>0: passive<br>1: active<br>2: timeSensitive<br>3...10: critical, in this mode the number will be used for volume (`level=3...10`) |
+| volume | Volume in `level=critical` mode, value range 0...10 | Same |
+| call | Long reminder, similar to WeChat call notification | Same |
+| badge | Push notification badge, can be any number | Calculated based on unread count |
+| autoCopy | Automatically copies push content below iOS 14.5, iOS 14.5 and above requires manually long-pressing or pulling down the notification | This app iOS 16+ |
+| copy | When copying a push notification, specifies the content to copy. If this parameter is not passed, the entire push content will be copied. | Same |
+| sound | Can set different ringtones for push notifications | Default ringtone can be set in the app |
+| icon | Set custom icon for push notifications, icons are automatically cached | Same, with additional support for uploading cloud icons |
+| image | Pass in an image URL, the phone will automatically download and cache the image after receiving the message | Same |
+| savealbum | Not supported | Pass "1" to automatically save the image to the photo album |
+| group | Group messages, push notifications will be displayed in the notification center grouped by `group`.<br>You can also choose to view different groups in the message history list. | Compatible |
+| isArchive | Pass `1` to save the push, pass anything else to not save the push, don't pass to decide whether to save based on the App settings. | Use `ttl=days` |
+| url | URL to jump to when clicking the push notification, supports URL Scheme and Universal Link | Same |

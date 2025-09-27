@@ -26,14 +26,14 @@
 * 現在、GitHubスポンサーのみを受け付けており、すべてのスポンサーに感謝しています<br>
 * スポンサー：[https://github.com/sponsors/Finb](https://github.com/sponsors/Finb)
 
-### 文档
-- **App**
-  - [使用教程](/tutorial)
-  - [推送加密](/encryption)
-  - [常见问题](/faq)
-- **服务端**
-  - [部署服务](/deploy)
-  - [直接推送](/apns)
-  - [编译代码](/build)
-  - [推送证书](/cert)
-- [隐私安全](/privacy)
+### ドキュメント
+- **アプリ**
+  - [使用チュートリアル](/ja/tutorial)
+  - [プッシュ暗号化](/ja/encryption)
+  - [よくある質問](/ja/faq)
+- **サーバーサイド**
+  - [サービスのデプロイ](/ja/deploy)
+  - [直接プッシュ](/ja/apns)
+  - [コードのコンパイル](/ja/build)
+  - [プッシュ証明書](/ja/cert)
+- [プライバシーとセキュリティ](/ja/privacy)

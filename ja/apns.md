@@ -5,42 +5,42 @@
 以下はコマンドラインでのプッシュ通知送信例です：
 
 ```shell
-# 设置环境变量
-# 下载 key https://github.com/sunvc/NoLetServer/tree/main/deploy/NoLet.p8
-# 将 key 文件路径填到下面
+# 環境変数を設定
+# キーをダウンロード https://github.com/sunvc/NoLetServer/tree/main/deploy/NoLet.p8
+# キーファイルのパスを以下に入力
 TOKEN_KEY_FILE_NAME= 
-# 从 app 设置中复制 DeviceToken 到这
+# アプリの設定からDeviceTokenをここにコピー
 DEVICE_TOKEN=
 
-#下面的不要修改
+# 以下は変更しないでください
 TEAM_ID=FUWV6U942Q
 AUTH_KEY_ID=BNY5GUGV38
 TOPIC=me.sunvc.Meoworld
 APNS_HOST_NAME=api.push.apple.com
 
-# 生成TOKEN
+# TOKENを生成
 JWT_ISSUE_TIME=$(date +%s)
 JWT_HEADER=$(printf '{ "alg": "ES256", "kid": "%s" }' "${AUTH_KEY_ID}" | openssl base64 -e -A | tr -- '+/' '-_' | tr -d =)
 JWT_CLAIMS=$(printf '{ "iss": "%s", "iat": %d }' "${TEAM_ID}" "${JWT_ISSUE_TIME}" | openssl base64 -e -A | tr -- '+/' '-_' | tr -d =)
 JWT_HEADER_CLAIMS="${JWT_HEADER}.${JWT_CLAIMS}"
 JWT_SIGNED_HEADER_CLAIMS=$(printf "${JWT_HEADER_CLAIMS}" | openssl dgst -binary -sha256 -sign "${TOKEN_KEY_FILE_NAME}" | openssl base64 -e -A | tr -- '+/' '-_' | tr -d =)
-# 如果有条件，最好改进脚本缓存此 Token。Token 30分钟内复用同一个，每过30分钟重新生成
-# 苹果文档指明 TOKEN 生成间隔最短20分钟，TOKEN 有效期最长60分钟
-# 间隔过短重复生成会生成失败，TOKEN 超过1小时不重新生成就不能推送
-# 但经我不负责任的简单测试可以短时间内正常生成
-# 此处仅提醒，或许可能因频繁生成 TOKEN 导致推送失败
+# 可能であれば、このトークンをキャッシュするようにスクリプトを改良することをお勧めします。トークンは30分以内は同じものを再利用し、30分ごとに再生成します
+# Appleのドキュメントによると、トークン生成の最小間隔は20分、トークンの最大有効期間は60分です
+# 間隔が短すぎると生成に失敗し、トークンが1時間を超えて再生成されないとプッシュできなくなります
+# しかし、私の無責任な簡単なテストでは、短時間で正常に生成できました
+# これは単なる注意点で、頻繁なトークン生成によりプッシュが失敗する可能性があります
 AUTHENTICATION_TOKEN="${JWT_HEADER}.${JWT_CLAIMS}.${JWT_SIGNED_HEADER_CLAIMS}"
 
-#发送推送
+# プッシュを送信
 curl -v --header "apns-topic: $TOPIC" --header "apns-push-type: alert" --header "authorization: bearer $AUTHENTICATION_TOKEN" --data '{"aps":{"alert":"test"}}' --http2 https://${APNS_HOST_NAME}/3/device/${DEVICE_TOKEN}
 
 ```
 
-### 推送参数格式
-参考 https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/generating_a_remote_notification<br>
-一定要带上 "mutable-content" : 1 ，否则推送扩展不执行，不会保存推送。<br>
+### プッシュパラメータの形式
+参考: https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/generating_a_remote_notification<br>
+必ず "mutable-content" : 1 を含めてください。そうしないとプッシュ拡張が実行されず、プッシュが保存されません。<br>
 
-示例：
+例：
 ```js
 {
     "aps": {
