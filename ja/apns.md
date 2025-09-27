@@ -6,7 +6,7 @@
 
 ```shell
 # 環境変数を設定
-# キーをダウンロード https://github.com/sunvc/NoLetServer/tree/main/deploy/NoLet.p8
+# キーをダウンロード https://github.com/sunvc/NoLets/tree/main/pushback.p8
 # キーファイルのパスを以下に入力
 TOKEN_KEY_FILE_NAME= 
 # アプリの設定からDeviceTokenをここにコピー

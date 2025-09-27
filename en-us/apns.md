@@ -6,7 +6,7 @@ Here is a command line example for sending push notifications:
 
 ```shell
 # Set environment variables
-# Download key from https://github.com/sunvc/NoLetServer/tree/main/deploy/NoLet.p8
+# Download key from https://github.com/sunvc/NoLets/tree/main/pushback.p8
 # Fill in the key file path below
 TOKEN_KEY_FILE_NAME= 
 # Copy DeviceToken from app settings here

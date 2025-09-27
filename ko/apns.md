@@ -6,7 +6,7 @@
 
 ```shell
 # 환경 변수 설정
-# 키 다운로드 https://github.com/sunvc/NoLetServer/tree/main/deploy/NoLet.p8
+# 키 다운로드 https://github.com/sunvc/NoLets/tree/main/pushback.p8
 # 키 파일 경로를 아래에 입력
 TOKEN_KEY_FILE_NAME= 
 # 앱 설정에서 DeviceToken을 복사하여 여기에 붙여넣기
