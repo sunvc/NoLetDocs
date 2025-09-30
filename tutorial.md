@@ -58,27 +58,31 @@ curl -X "POST" "https://wzs.app/push" \
 }'
 ```
 
-## 请求参数
+## 所有参数列表
 支持的参数列表，具体效果可在APP内预览。
 所有参数兼容各种写法：SubTitle / subTitle / subtitle / sub_title / sub-title /
 
-| 参数 | Bark | NoLet 使用差异 |
+| 参数 | 参数类型 | 使用说明 |
 | ----- | ----------- | ----------- |
-| id | 无 | UUID 传入相同id覆盖原有消息 |
-| title | 推送标题 | 一致 |
-| subtitle | 推送副标题 | 一致 |
-| body | 推送内容 | 一致( 支持 content/message/data/text 等同body) |
-| markdown | 不支持 | 渲染Markdown(支持简写 md) |
-| level | 推送中断级别。<br>**active**：默认值，系统会立即亮屏显示通知<br>**timeSensitive**：时效性通知，可在专注状态下显示通知。<br>**passive**：仅将通知添加到通知列表，不会亮屏提醒。<br>**critical**：重要提醒，可在专注模式或者静音模式下提醒 | 兼容。参数可以使用数字替代：`level=1`<br>0：passive<br>1：active<br>2：timeSensitive<br>3...10：critical，此模式数字将用于音量（`level=3...10`） |
-| volume | `level=critical` 模式下音量，取值范围 0...10 | 一致 |
-| call | 长提醒，类似微信电话通知 | 一致 |
-| badge | 推送角标，可以是任意数字 | 按照未读数计算 |
-| autoCopy | iOS 14.5 以下自动复制推送内容，iOS 14.5 以上需手动长按推送或下拉推送 | 本应用 iOS 16+ |
-| copy | 复制推送时，指定复制的内容，不传此参数将复制整个推送内容。 | 一致 |
-| sound | 可以为推送设置不同的铃声 | 应用内可设置默认铃声 |
-| icon | 为推送设置自定义图标,图标自动缓存 | 一致，额外支持上传云图标 |
-| image | 传入图片地址，手机收到消息后自动下载缓存 | 一致 |
-| savealbum | 不支持 | 传"1"自动保存图片到相册 |
-| group | 对消息进行分组，推送将按 `group` 分组显示在通知中心中。<br>也可在历史消息列表中选择查看不同的群组。 | 兼容 |
-| isArchive | 传 `1` 保存推送，传其他的不保存推送，不传按 App 内设置来决定是否保存。 | 用 `ttl=天数` |
-| url | 点击推送时，跳转的 URL，支持 URL Scheme 和 Universal Link | 一致 |
+| id | 字符串 | UUID 传入相同id覆盖原有消息，只传id删除消息 |
+| title | 字符串 | 推送标题 |
+| subtitle | 字符串 | 推送副标题 |
+| body | 字符串 | 推送内容( 支持 content/message/data/text 等同body) |
+| cipherText | 字符串 | 加密推送内容 |
+| cipherNumber | 整数 | `cipherNumber=0` 密钥编号, 0为系统默认密钥 |
+| markdown | 字符串 | Markdown语法(支持简写 md) |
+| level | 字符串或整数  | 推送中断级别。<br>**active**：默认值，系统会立即亮屏显示通知<br>**timeSensitive**：时效性通知，可在专注状态下显示通知。<br>**passive**：仅将通知添加到通知列表，不会亮屏提醒。<br>**critical**：重要提醒，可在专注模式或者静音模式下提醒。参数可以使用数字替代：`level=1`<br>0：passive<br>1：active<br>2：timeSensitive<br>3...10：critical，此模式数字将用于音量（`level=3...10`） |
+| volume | 整数/字符串 | `level=critical&volume=5` 模式下音量，取值范围 0...10 |
+| call | 字符串 | `call=1` 长提醒，类似微信电话通知 |
+| badge | 字符串  | `badge=1` 推送角标，可以是任意数字 |
+| autoCopy | 布尔值 | `autoCopy=1` or `autoCopy=true`  需手动长按推送或下拉推送 |
+| copy | 字符串 | `copy=复制内容` 复制推送时，指定复制的内容，不传此参数将复制整个推送内容。 |
+| sound | 字符串 | `sound=minuet` 可以为推送设置不同的铃声，应用内可设置默认铃声 |
+| icon | URL | `icon=https://example.com/icon.png` 设置自定义图标，图标自动缓存，支持上传云图标 |
+| icon | emoji | `icon=🐲` <img src="/_media/example-emoji.png" alt="NoLet App" height="60">  |
+| icon | 字符串数组 | `icon=组,ff0000` <img src="/_media/example-word.png" alt="NoLet App" height="60"> |
+| image | URL | 传入图片地址，手机收到消息后自动下载缓存 |
+| savealbum | 布尔值 | 传"1"自动保存图片到相册 |
+| group | 字符串 | 对消息进行分组，推送将按 `group` 分组显示在通知中心中。<br>也可在历史消息列表中选择查看不同的群组。 |
+| ttl | 整数/字符串 | `ttl=天数` 推送过期时间，单位天，默认 app 内设置。 |
+| url | URL  | 点击推送时，跳转的 URL，支持 URL Scheme 和 Universal Link |
