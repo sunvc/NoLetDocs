@@ -15,17 +15,6 @@
 - [NoLet GitHub Issues](https://github.com/sunvc/NoLet/issues)
 
 
-### 免费
-* NoLet **2024年1月**上线。 *（业余爱好，不知道搞多久）*<br> 
-
-
-APP在维持期间，不会有任何形式的收费与广告，各位彦祖放心使用。
-
-### 赞助
-* 如果需要赞助，请赞助给Bark
-* 目前仅接收 GitHub 赞助，同时非常感谢每一位赞助者<br>
-* 赞助者：[https://github.com/sponsors/Finb](https://github.com/sponsors/Finb)
-
 ### 文档
 - **App**
   - [使用教程](/tutorial)

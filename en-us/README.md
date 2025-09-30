@@ -15,17 +15,6 @@
 - [NoLet GitHub Issues](https://github.com/sunvc/NoLet/issues)
 
 
-### Free
-* NoLet launched in **January 2024**. *(Hobby project, duration uncertain)*<br> 
-
-
-During the maintenance period, there will be no charges or advertisements of any form. Feel free to use it.
-
-### Sponsorship
-* If you wish to sponsor, please sponsor Bark
-* Currently only accepting GitHub sponsorships, and greatly appreciate every sponsor<br>
-* Sponsors: [https://github.com/sponsors/Finb](https://github.com/sponsors/Finb)
-
 ### Documentation
 - **App**
   - [Usage Tutorial](/en-us/tutorial)

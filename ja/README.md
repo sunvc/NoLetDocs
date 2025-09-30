@@ -15,17 +15,6 @@
 - [NoLet GitHub Issues](https://github.com/sunvc/NoLet/issues)
 
 
-### 無料
-* NoLetは**2024年1月**にリリースされました。*（趣味プロジェクト、どれくらい続くかわかりません）*<br> 
-
-
-アプリの維持期間中、いかなる形式の料金や広告もありません。安心してご利用ください。
-
-### スポンサー
-* スポンサーが必要な場合は、Barkにスポンサーしてください
-* 現在、GitHubスポンサーのみを受け付けており、すべてのスポンサーに感謝しています<br>
-* スポンサー：[https://github.com/sponsors/Finb](https://github.com/sponsors/Finb)
-
 ### ドキュメント
 - **アプリ**
   - [使用チュートリアル](/ja/tutorial)
